@@ -13,7 +13,8 @@
      - network=<network_name>
      - -i итерактивный режим для ввода данных из консоли
      - -it то же что и -i но с подключением к терминалу
-     - -v <external_path>:<internal_path> подключение директорий
+     - -v <external_path>:<internal_path> подключение директорий или <volume_name>:<internal_path> ( var/lib/docker/volumes )
+     - --mount type=bind,source=<external_path>,target <internal_path>
    - attach <container_id> подключится к выводу контейнера
    - stop <container_name>
    - rm <container_name>
@@ -21,11 +22,12 @@
    - rmi <image_name:tag>
    - inspect <cont_name>
    - networks
+   - По умолчанию создаётся brige, none, host
      - inspect
      - ls
      - create
-       - d
-       - subnet
+       --driver типа дайвера
+       --subnet 182.18.0.0.6/24
        - gateway
        - <network_name>
   - exec <container_name> command
