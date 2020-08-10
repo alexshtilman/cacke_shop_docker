@@ -12,6 +12,7 @@
      - --cpu<.%number>
      - network=<network_name>
      - -i итерактивный режим для ввода данных из консоли
+     - -it то же что и -i но с подключением к терминалу
    - attach <container_id> подключится к выводу контейнера
    - stop <container_name>
    - rm <container_name>
