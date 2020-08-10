@@ -26,8 +26,8 @@
      - inspect
      - ls
      - create
-       --driver типа дайвера
-       --subnet 182.18.0.0.6/24
+       - --driver типа дайвера
+       - --subnet 182.18.0.0.6/24
        - gateway
        - <network_name>
   - exec <container_name> command
