@@ -1,1 +1,28 @@
-# cacke_shop_docker
+# docker basic comands
+1. docker
+   - version  версия докера
+   - ps список запущенных контейнеров ( -a все включая остановленные)
+   - images - список доступных образов
+   - run
+     - -p internal:external
+     - --name <container_name>
+     - -e env_name=env_val
+     - --memory=<memory>
+     - --cpu<.%number>
+     - network=<network_name>
+   - stop <container_name>
+   - rm <container_name>
+   - pull <image_name:tag>
+   - rmi <image_name:tag>
+   - inspect <cont_name>
+   - networks
+     - inspect
+     - ls
+     - create
+       - d
+       - subnet
+       - gateway
+       - <network_name>
+  - build -t cont_name . - собирает докер контейенр по DockerFile
+    - entrypoint - первое что вызывается
+    - cmd ["comand_1","comand_2"] 
