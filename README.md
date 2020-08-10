@@ -26,3 +26,4 @@
   - build -t cont_name . - собирает докер контейенр по DockerFile
     - entrypoint - первое что вызывается
     - cmd ["comand_1","comand_2"] 
+  - exec <container_name> command
