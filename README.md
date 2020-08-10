@@ -4,7 +4,7 @@
    - ps список запущенных контейнеров ( -a все включая остановленные)
    - images - список доступных образов
    - run
-     - -p internal:external
+     - -p external:internal
      - -d запуск в фоне
      - --name <container_name>
      - -e env_name=env_val
