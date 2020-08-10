@@ -11,6 +11,7 @@
      - --memory=<memory>
      - --cpu<.%number>
      - network=<network_name>
+   - attach <container_id> подключится к выводу контейнера
    - stop <container_name>
    - rm <container_name>
    - pull <image_name:tag>
