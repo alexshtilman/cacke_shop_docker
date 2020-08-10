@@ -39,3 +39,5 @@
    - COPY <FROM> <TO>
    - ENTRYPOIN - первое что вызывается
    - CMD ["comand_1","comand_2"] 
+   - WORKDIR <path>
+   - VOLIUME ["path_1",...] или <path>
