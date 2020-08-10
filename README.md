@@ -11,6 +11,7 @@
      - --memory=<memory>
      - --cpu<.%number>
      - network=<network_name>
+     - -i итерактивный режим для ввода данных из консоли
    - attach <container_id> подключится к выводу контейнера
    - stop <container_name>
    - rm <container_name>
