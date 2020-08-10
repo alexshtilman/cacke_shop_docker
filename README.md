@@ -28,8 +28,13 @@
        - subnet
        - gateway
        - <network_name>
-  - build -t cont_name . - собирает докер контейенр по DockerFile
-    - entrypoint - первое что вызывается
-    - cmd ["comand_1","comand_2"] 
   - exec <container_name> command
   - logs <container_id> показывает логи
+  
+# DockerFile basic
+   - build -t cont_name . - собирает докер контейенр по DockerFile
+   - FROM <image_name:tag>
+   - RUN <comand>
+   - COPY <FROM> <TO>
+   - ENTRYPOIN - первое что вызывается
+   - CMD ["comand_1","comand_2"] 
