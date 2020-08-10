@@ -1,5 +1,5 @@
 # docker comands
-## общие команды
+## Общие команды
    - version  версия докера
    - ps список запущенных контейнеров ( -a все включая остановленные)
    - images - список доступных образов
@@ -12,6 +12,7 @@
    - exec <container_name> command
    - logs <container_id> показывает логи
    - history <image> показывает слои
+
 ## Запуск контейнера - run   
    - -p external:internal
    - -d запуск в фоне
@@ -24,6 +25,10 @@
    - -it то же что и -i но с подключением к терминалу
    - -v <external_path>:<internal_path> подключение директорий или <volume_name>:<internal_path> ( var/lib/docker/volumes )
    - --mount type=bind,source=<external_path>,target <internal_path>
+   ```bash
+   docker run --name db -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+   ```
+   
 ## Работа с сетями: networks
 По умолчанию создаётся brige, none, host
    - inspect
