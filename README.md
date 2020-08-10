@@ -12,6 +12,7 @@
    - exec <container_name> command
    - logs <container_id> показывает логи
    - history <image> показывает слои
+   - stats - показывает состояние
 
 ## Запуск контейнера - run   
    - -p external:internal
