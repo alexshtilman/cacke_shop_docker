@@ -32,3 +32,4 @@
     - entrypoint - первое что вызывается
     - cmd ["comand_1","comand_2"] 
   - exec <container_name> command
+  - logs <container_id> показывает логи
