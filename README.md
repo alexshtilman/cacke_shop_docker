@@ -30,6 +30,7 @@
        - <network_name>
   - exec <container_name> command
   - logs <container_id> показывает логи
+  - history <image> показывает слои
   
 # DockerFile basic
    - build -t cont_name . - собирает докер контейенр по DockerFile
