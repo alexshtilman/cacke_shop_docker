@@ -5,6 +5,7 @@
    - images - список доступных образов
    - run
      - -p internal:external
+     - -d запуск в фоне
      - --name <container_name>
      - -e env_name=env_val
      - --memory=<memory>
