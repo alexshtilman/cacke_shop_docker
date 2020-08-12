@@ -49,7 +49,7 @@ build -t cont_name . - собирает докер контейенр по Docke
    - ENTRYPOIN - первое что вызывается
    - CMD ["comand_1","comand_2"] 
    - WORKDIR <path>
-   - VOLIUME ["path_1",...] или <path>
+   - VOLUME ["path_1",...] или <path>
    
 # Compose
 Позволяет запускать несколько контейнеров сразу файлик docker-compose.yml
