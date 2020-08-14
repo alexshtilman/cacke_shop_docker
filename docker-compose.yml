@@ -4,12 +4,8 @@ services:
     build:
       context: ../cake_shop_frontend_react_rest
       dockerfile: Dockerfile
-    tty: true
     ports:
-      - "3000:3000"
-    volumes:
-      - ../cake_shop_frontend_react_rest:/app
-      - /app/node_modules
+      - "3000:80"
     depends_on:
       - api
   api:
@@ -41,8 +37,8 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: my_password
-      POSTGRES_USER: main
-      POSTGRES_DB: data
+      POSTGRES_USER: cake_shop_admin
+      POSTGRES_DB: cake_shop
     volumes:
       - ${HOME}/volumes/cake_shop/:/var/lib/postgresql/data
     networks:
