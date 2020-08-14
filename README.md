@@ -61,6 +61,7 @@ build -t cont_name . - собирает докер контейенр по Docke
 # Compose
 
 Позволяет запускать несколько контейнеров сразу файлик docker-compose.yml
+<<<<<<< HEAD
 запуск docker -compose up
 запуск на пересборку docker-compose -build
 
@@ -70,6 +71,24 @@ build -t cont_name . - собирает докер контейенр по Docke
     - image: "image_name"
     - depends_on:
       - <service_name>
+=======
+запуск 
+```bash
+docker-compose up
+```
+запуск на пересборку 
+```bash
+docker-compose -build   
+```
+   - version: 1,2,3
+   - services: 
+     - <service_name>:
+       - image: "image_name"
+       - depends_on:
+         - <service_name>
+       - networks:
+         - <network_name>
+>>>>>>> 17cc7ccf3d35010b8b1ea30c49bbe83a8e07529a
     - networks:
       - <network_name>
   - networks:
