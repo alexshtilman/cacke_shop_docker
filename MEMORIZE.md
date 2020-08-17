@@ -76,18 +76,71 @@ build -t cont_name . - собирает докер контейенр по Docke
 
 ## Compose
 
-Позволяет запускать несколько контейнеров сразу файлик docker-compose.yml
-запуск
+## Docker Compose and The Docker-compose.yml File
 
-```bash
+docker-compose.yml
+
+https://docs.docker.com
+
+## Trying Out Basic Compose Commands
+
+pcat docker-compose.yml
+
 docker-compose up
-```
 
-запуск на пересборку
+docker-compose up -d
 
-```bash
-docker-compose -build
-```
+docker-compose logs
+
+docker-compose --help
+
+docker-compose ps
+
+docker-compose top
+
+docker-compose down
+
+## Assignment Answers: Build a Compose File for a Multi-Container Service
+
+docker-compose.yml
+
+docker pull drupal
+
+docker image inspect drupal
+
+docker-compose up
+
+https://hub.docker.com
+
+docker-compose down --help
+
+docker-compose down -v
+
+## Adding Image Building to Compose Files
+
+docker-compose.yml
+
+docker-compose up
+
+docker-compose up --build
+
+docker-compose down
+
+docker image ls
+
+docker-compose down --help
+
+docker image rm nginx-custom
+
+docker image ls
+
+docker-compose up -d
+
+docker image ls
+
+docker-compose down --help
+
+docker-compose down --rmi local
 
 - version: 1,2,3
 - services:
