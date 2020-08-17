@@ -74,7 +74,7 @@ build -t cont_name . - собирает докер контейенр по Docke
 - WORKDIR <path>
 - VOLUME ["path_1",...] или <path>
 
-# Compose
+## Compose
 
 Позволяет запускать несколько контейнеров сразу файлик docker-compose.yml
 запуск
