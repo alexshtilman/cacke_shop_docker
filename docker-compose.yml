@@ -1,13 +1,35 @@
 version: "3.7"
 services:
+  registry:
+    image: registry
+    ports:
+      - "5001:5000"
+    volumes:
+      - ${HOME}/cake_shop_registry/:/var/lib/registry
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - frontend
+      - backend
   client:
     build:
       context: ../cake_shop_frontend_react_rest
       dockerfile: Dockerfile
     ports:
       - "3000:80"
+    networks:
+      - frontend
     depends_on:
       - api
+      - registry
+    deploy:
+      placement:
+        constraints: [node.role == manager]
   api:
     build:
       context: ../cake_shop_backend_flask_rest
@@ -15,6 +37,9 @@ services:
     command: gunicorn --bind 0.0.0.0:5000 main:app
     ports:
       - 5000:5000
+    deploy:
+      placement:
+        constraints: [node.role == manager]
     environment:
       POSTGRES_PASSWORD: my_password
       POSTGRES_USER: cake_shop_admin
@@ -30,6 +55,7 @@ services:
       - backend
     depends_on:
       - db
+      - registry
   db:
     image: postgres
     ports:
@@ -43,6 +69,9 @@ services:
       - ${HOME}/volumes/cake_shop/:/var/lib/postgresql/data
     networks:
       - backend
+    deploy:
+      placement:
+        constraints: [node.role == manager]
   db_admin:
     image: dpage/pgadmin4
     ports:
@@ -54,11 +83,27 @@ services:
       - backend
     depends_on:
       - db
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  visualizer:
+    image: dockersamples/visualizer
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    networks:
+      - frontend
+      - backend
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 networks:
   frontend:
-    driver: bridge
+    driver: overlay
   backend:
-    driver: bridge
+    driver: overlay
 volumes:
   appdata:
     driver: local
