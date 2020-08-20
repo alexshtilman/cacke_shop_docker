@@ -10,3 +10,6 @@ This repository contains docker-compose.yml file and instructions how to use doc
 - volumes
 - Dockerfile
 - docker-compose
+- docker service
+- docker swarm
+- docker stack
