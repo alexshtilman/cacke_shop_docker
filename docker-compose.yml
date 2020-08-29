@@ -27,6 +27,7 @@ services:
     depends_on:
       - api
       - registry
+    image: cake_shop_frontend_react_rest
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -35,14 +36,15 @@ services:
       context: ../cake_shop_backend_flask_rest
       dockerfile: Dockerfile
     command: gunicorn --bind 0.0.0.0:5000 main:app
+    image: cake_shop_backend_flask_rest
     ports:
       - 5000:5000
     deploy:
       placement:
         constraints: [node.role == manager]
     environment:
-      POSTGRES_PASSWORD: my_password
-      POSTGRES_USER: cake_shop_admin
+      POSTGRES_PASSWORD: cake_shop_admin
+      POSTGRES_USER: admin
       POSTGRES_DB: cake_shop
       DB_SERVER_NAME: db
       JWT_SECRET_KEY: my_secret_key
@@ -62,11 +64,12 @@ services:
       - "5432:5432"
     restart: always
     environment:
-      POSTGRES_PASSWORD: my_password
-      POSTGRES_USER: cake_shop_admin
+      POSTGRES_PASSWORD: cake_shop_admin
+      POSTGRES_USER: admin
       POSTGRES_DB: cake_shop
     volumes:
       - ${HOME}/volumes/cake_shop/:/var/lib/postgresql/data
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     networks:
       - backend
     deploy:
