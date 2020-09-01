@@ -3,7 +3,7 @@ services:
   registry:
     image: registry
     ports:
-      - "5001:5000"
+      - 5001:5000
     volumes:
       - ${HOME}/cake_shop_registry/:/var/lib/registry
     deploy:
@@ -21,7 +21,7 @@ services:
       context: ../cake_shop_frontend_react_rest
       dockerfile: Dockerfile
     ports:
-      - "3000:80"
+      - 3000:80
     networks:
       - frontend
     depends_on:
@@ -44,7 +44,7 @@ services:
         constraints: [node.role == manager]
     environment:
       POSTGRES_PASSWORD: cake_shop_admin
-      POSTGRES_USER: admin
+      POSTGRES_USER: cake_shop_admin
       POSTGRES_DB: cake_shop
       DB_SERVER_NAME: db
       JWT_SECRET_KEY: my_secret_key
@@ -61,7 +61,7 @@ services:
   db:
     image: postgres
     ports:
-      - "5432:5432"
+      - 5432:5432
     restart: always
     environment:
       POSTGRES_PASSWORD: cake_shop_admin
@@ -78,7 +78,7 @@ services:
   db_admin:
     image: dpage/pgadmin4
     ports:
-      - "80:80"
+      - 80:80
     environment:
       PGADMIN_DEFAULT_EMAIL: user@domain.local
       PGADMIN_DEFAULT_PASSWORD: my_password
@@ -92,7 +92,7 @@ services:
   visualizer:
     image: dockersamples/visualizer
     ports:
-      - "8080:8080"
+      - 8080:8080
     stop_grace_period: 1m30s
     networks:
       - frontend
