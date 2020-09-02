@@ -15,14 +15,12 @@ This repository contains docker-compose.yml file and instructions how to use doc
 ### Build and tag images
 
 - `docker-compose build`
-- `docker tag cake_shop_frontend_react_rest 127.0.0.1:5001/cake_shop_frontend_react_rest`
-- `docker tag cake_shop_backend_flask_api 127.0.0.1:5001/cake_shop_backend_flask_api`
+- `docker tag cake_shop_backend_flask_api gungam/cake_shop_backend_flask_api`
 
 ### Run service and push images to repository
 
+- `docker push gungam/cake_shop_backend_flask_api`
 - `docker stack deploy -c docker-compose.yml cake_shop`
-- `docker push 127.0.0.1:5001/cake_shop_frontend_react_rest`
-- `docker push 127.0.0.1:5001/cake_shop_backend_flask_api`
 
 - installation
 - common commands
