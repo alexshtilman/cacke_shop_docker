@@ -16,39 +16,31 @@ services:
     networks:
       - frontend
       - backend
-  client:
-    build:
-      context: ../cake_shop_frontend_react_rest
-      dockerfile: Dockerfile
-    ports:
-      - 3000:80
-    networks:
-      - frontend
-    depends_on:
-      - api
-      - registry
-    image: cake_shop_frontend_react_rest
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+
   api:
     build:
       context: ../cake_shop_backend_flask_rest
       dockerfile: Dockerfile
     command: gunicorn --bind 0.0.0.0:5000 main:app
-    image: cake_shop_backend_flask_rest
+    image: gungam/cake_shop_backend_flask_rest
     ports:
-      - 5000:5000
+      - 80:5000
     deploy:
       placement:
         constraints: [node.role == manager]
+    secrets:
+      - psql_password
+      - psql_user
+      - psql_db
+      - jwt_secret_key
+      - setup_key
     environment:
-      POSTGRES_PASSWORD: cake_shop_admin
-      POSTGRES_USER: cake_shop_admin
-      POSTGRES_DB: cake_shop
+      POSTGRES_PASSWORD: /run/secrets/psql_password
+      POSTGRES_USER: /run/secrets/psql_user
+      POSTGRES_DB: /run/secrets/psql_db
       DB_SERVER_NAME: db
-      JWT_SECRET_KEY: my_secret_key
-      SETUP_KEY: my_setup_key
+      JWT_SECRET_KEY: /run/secrets/jwt_secret_key
+      SETUP_KEY: /run/secrets/setup_key
       FLASK_ENV: production
     volumes:
       - appdata:/var/www/
@@ -63,10 +55,14 @@ services:
     ports:
       - 5432:5432
     restart: always
+    secrets:
+      - psql_password
+      - psql_user
+      - psql_db
     environment:
-      POSTGRES_PASSWORD: cake_shop_admin
-      POSTGRES_USER: admin
-      POSTGRES_DB: cake_shop
+      POSTGRES_PASSWORD_FILE: /run/secrets/psql_password
+      POSTGRES_USER_FILE: /run/secrets/psql_user
+      POSTGRES_DB_FILE: /run/secrets/psql_db
     volumes:
       - ${HOME}/volumes/cake_shop/:/var/lib/postgresql/data
       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
@@ -78,10 +74,10 @@ services:
   db_admin:
     image: dpage/pgadmin4
     ports:
-      - 80:80
+      - 3000:80
     environment:
-      PGADMIN_DEFAULT_EMAIL: user@domain.local
-      PGADMIN_DEFAULT_PASSWORD: my_password
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: default_password
     networks:
       - backend
     depends_on:
@@ -110,3 +106,14 @@ networks:
 volumes:
   appdata:
     driver: local
+secrets:
+  psql_password:
+    external: true
+  psql_user:
+    external: true
+  psql_db:
+    external: true
+  jwt_secret_key:
+    external: true
+  setup_key:
+    external: true
