@@ -1,22 +1,5 @@
 version: "3.7"
 services:
-  registry:
-    image: registry
-    ports:
-      - 5001:5000
-    volumes:
-      - ${HOME}/cake_shop_registry/:/var/lib/registry
-    deploy:
-      mode: replicated
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-      placement:
-        constraints: [node.role == manager]
-    networks:
-      - frontend
-      - backend
-
   api:
     build:
       context: ../cake_shop_backend_flask_rest
@@ -49,7 +32,7 @@ services:
       - backend
     depends_on:
       - db
-      - registry
+
   db:
     image: postgres
     ports:
@@ -82,19 +65,6 @@ services:
       - backend
     depends_on:
       - db
-    deploy:
-      placement:
-        constraints: [node.role == manager]
-  visualizer:
-    image: dockersamples/visualizer
-    ports:
-      - 8080:8080
-    stop_grace_period: 1m30s
-    networks:
-      - frontend
-      - backend
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
     deploy:
       placement:
         constraints: [node.role == manager]
