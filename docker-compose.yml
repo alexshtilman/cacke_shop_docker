@@ -17,6 +17,8 @@ services:
       - psql_db
       - jwt_secret_key
       - setup_key
+      - google_client_id
+      - google_client_secret
     environment:
       POSTGRES_PASSWORD: /run/secrets/psql_password
       POSTGRES_USER: /run/secrets/psql_user
@@ -25,6 +27,8 @@ services:
       JWT_SECRET_KEY: /run/secrets/jwt_secret_key
       SETUP_KEY: /run/secrets/setup_key
       FLASK_ENV: production
+      GOOGLE_CLIENT_ID: /run/secrets/google_client_id
+      GOOGLE_CLIENT_SECRET: /run/secrets/google_client_secret
     volumes:
       - appdata:/var/www/
     networks:
@@ -86,4 +90,8 @@ secrets:
   jwt_secret_key:
     external: true
   setup_key:
+    external: true
+  google_client_id:
+    external: true
+  google_client_secret:
     external: true
